@@ -78,12 +78,6 @@ NAN_MODULE_INIT(init) {
   target->Set(Nan::New<String>("gifVersion").ToLocalChecked(), Nan::New<String>(GIF_LIB_VERSION).ToLocalChecked());
 #endif
 #endif
-
-#ifdef HAVE_FREETYPE
-  char freetype_version[10];
-  snprintf(freetype_version, 10, "%d.%d.%d", FREETYPE_MAJOR, FREETYPE_MINOR, FREETYPE_PATCH);
-  target->Set(Nan::New<String>("freetypeVersion").ToLocalChecked(), Nan::New<String>(freetype_version).ToLocalChecked());
-#endif
 }
 
 NODE_MODULE(canvas,init);
