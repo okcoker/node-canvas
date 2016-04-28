@@ -10,7 +10,6 @@
 #include <fontconfig/fontconfig.h>
 #endif
 
-#ifdef HAVE_FREETYPE
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_TRUETYPE_TABLES_H
@@ -185,8 +184,6 @@ get_pango_font_description(unsigned char* filepath) {
   return NULL;
 }
 
-#endif // HAVE_FREETPE
-
 /*
  * Register font with the OS
  */
@@ -206,11 +203,7 @@ register_font(unsigned char *filepath, PangoFontDescription **desc) {
 
   if (!success) return false;
 
-  #ifdef HAVE_FREETYPE
   *desc = get_pango_font_description(filepath);
-  #else
-  *desc = NULL;
-  #endif
 
   // Tell Pango to throw away the current FontMap and create a new one. This
   // has the effect of registering the new font in Pango by re-looking up all

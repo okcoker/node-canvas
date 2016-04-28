@@ -14,6 +14,8 @@
 #include "CanvasGradient.h"
 #include "CanvasPattern.h"
 #include "CanvasRenderingContext2d.h"
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 // Compatibility with Visual Studio versions prior to VS2015
 #if defined(_MSC_VER) && _MSC_VER < 1900
@@ -65,6 +67,10 @@ NAN_MODULE_INIT(init) {
   target->Set(Nan::New<String>("gifVersion").ToLocalChecked(), Nan::New<String>(GIF_LIB_VERSION).ToLocalChecked());
 #endif
 #endif
+
+  char freetype_version[10];
+  snprintf(freetype_version, 10, "%d.%d.%d", FREETYPE_MAJOR, FREETYPE_MINOR, FREETYPE_PATCH);
+  target->Set(Nan::New<String>("freetypeVersion").ToLocalChecked(), Nan::New<String>(freetype_version).ToLocalChecked());
 }
 
 NODE_MODULE(canvas,init);

@@ -103,12 +103,14 @@
             '<!@(pkg-config pixman-1 --libs)',
             '<!@(pkg-config cairo --libs)',
             '<!@(pkg-config libpng --libs)',
-            '<!@(pkg-config pangocairo --libs)'
+            '<!@(pkg-config pangocairo --libs)',
+            '<!@(pkg-config freetype2 --libs)'
           ],
           'include_dirs': [
             '<!@(pkg-config cairo --cflags-only-I | sed s/-I//g)',
             '<!@(pkg-config libpng --cflags-only-I | sed s/-I//g)',
-            '<!@(pkg-config pangocairo --cflags-only-I | sed s/-I//g)'
+            '<!@(pkg-config pangocairo --cflags-only-I | sed s/-I//g)',
+            '<!@(pkg-config freetype2 --cflags-only-I | sed s/-I//g)'
           ]
         }],
         ['with_jpeg=="true"', {
@@ -125,17 +127,6 @@
                 '-ljpeg'
               ]
             }]
-          ]
-        }],
-        ['with_freetype=="true"', {
-          'defines': [
-            'HAVE_FREETYPE'
-          ],
-          'libraries': [# TODO solution for Windows
-            '<!@(pkg-config freetype2 --libs)'
-          ],
-          'include_dirs': [
-            '<!@(pkg-config freetype2 --cflags-only-I | sed s/-I//g)',
           ]
         }],
         ['with_gif=="true"', {

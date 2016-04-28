@@ -483,7 +483,7 @@ NAN_METHOD(Canvas::RegisterFont) {
 
   if (!register_font((unsigned char*) *filePath, &face.target_desc)) {
     Nan::ThrowError("Could not load font to the system's font host");
-  } else if (face.target_desc) { // NULL if not compiled with FT
+  } else {
     PangoFontDescription* d  = pango_font_description_copy(face.target_desc);
 
     if (!info[1]->Equals(Nan::Null())) {
